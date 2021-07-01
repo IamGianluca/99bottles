@@ -1,0 +1,9 @@
+language: python
+python:
+  - "3.8"
+install:
+  - pip install pip --upgrade
+  - make install
+script:
+  - black -l 79 . --check
+  - make test
