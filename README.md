@@ -8,9 +8,10 @@ If you want to contribute to this repo, first download the Git repo in your loca
 
 ```bash
 $ git clone git@github.com:IamGianluca/99bottles.git
+cd 99bottles
 ```
 
-Before installing the library, I recommend you to create a Python virtual environment with `poetry` or `conda`. Thsi will ensure you won't mess up with your local Python interpreter.
+Before installing the library, I recommend you to create a Python virtual environment with `poetry` or `conda`. This will ensure you won't mess up with your local Python interpreter.
 
 ```bash
 $ conda create --name bottle python=3.8
