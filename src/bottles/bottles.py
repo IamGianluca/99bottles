@@ -22,13 +22,9 @@ class BottleNumber:
     @staticmethod
     def get(number: int):
         """BottleNumber factory."""
-        if number == 0:
-            return BottleNumber0(number)
-        elif number == 1:
-            return BottleNumber1(number)
-        elif number == 6:
-            return BottleNumber6(number)
-        else:
+        try:
+            return eval(f"BottleNumber{number}")(number)
+        except NameError as e:
             return BottleNumber(number)
 
     def to_str(self) -> str:
