@@ -8,24 +8,37 @@ class Bottle:
         )
 
     def verse(self, number: int) -> str:
-        if number == 0:
-            return (
-                "No more bottles of beer on the wall, no more bottles of beer.\n"
-                "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
-            )
-        if number == 1:
-            return (
-                "1 bottle of beer on the wall, 1 bottle of beer.\n"
-                "Take it down and pass it around, no more bottles of beer on the wall.\n"
-            )
-        else:
-            return (
-                f"{number} bottles of beer on the wall, {number} bottles of beer.\n"
-                f"Take one down and pass it around, {number-1} {self.container(number-1)} of beer on the wall.\n"
-            )
+        return (
+            f"{self.quantity(number).capitalize()} {self.container(number)} of beer on the wall, {self.quantity(number)} {self.container(number)} of beer.\n"
+            f"{self.action(number)}, {self.quantity(self.successor(number))} {self.container(number-1)} of beer on the wall.\n"
+        )
 
     def container(self, number: int) -> str:
         if number == 1:
             return "bottle"
         else:
             return "bottles"
+
+    def pronoun(self, number: int) -> str:
+        if number == 1:
+            return "it"
+        else:
+            return "one"
+
+    def quantity(self, number: int) -> str:
+        if number == 0:
+            return "no more"
+        else:
+            return str(number)
+
+    def action(self, number: int) -> str:
+        if number == 0:
+            return "Go to the store and buy some more"
+        else:
+            return f"Take {self.pronoun(number)} down and pass it around"
+
+    def successor(self, number: int) -> int:
+        if number == 0:
+            return 99
+        else:
+            return number - 1
