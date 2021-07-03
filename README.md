@@ -2,11 +2,13 @@
 
 ![book cover](https://d2beuh40lcdzfb.cloudfront.net/products/197947/300x300/cover_2.1_sales_js_php_ruby.jpeg)
 
-This repository contains my solution to the exercises in "99 Bottles of OOP" by Sandi Metz, Katrina Owen, and TJ Stankus. The solution is implemented in Python.
+This repository contains my solution to the exercises in ["99 Bottles of OOP"](https://sandimetz.com/99bottles) by Sandi Metz, Katrina Owen, and TJ Stankus. The solution is implemented in Python.
 
 ## How to navigate the repository
 
-Every chapter has a Git branch representing the final state of the codebase as described in the book at the end of the chapter. Chapter 7 is unique because it has two Git branches, each explaining a different way to create the `BottleNumber`'s factory.
+Every chapter has a Git branch representing the final state of the codebase as described in the book at the end of the chapter. Chapter 7 is unique because it has two Git branches, each explaining a different way to create the `BottleNumber`'s factory. You can access all the branches from [the active branches tab](https://github.com/IamGianluca/99bottles/branches/active).
+
+Additionally, I've provided some commentary to each Pull Request, explaining some choices I made. These were motivated mainly by taking advantage of Python's features.
 
 To get the best out of this book, I encourage you to write your solution first and consulting this repo to compare your solution. I think getting your hands dirty is the best way for you to learn.
 
