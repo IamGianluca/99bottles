@@ -14,26 +14,26 @@ cd 99bottles
 Before installing the library, I recommend you to create a Python virtual environment with `poetry` or `conda`. This will ensure you won't mess up with your local Python interpreter.
 
 ```bash
-$ conda create --name bottle python=3.8
-$ conda activate bottle
+conda create --name bottle python=3.8
+conda activate bottle
 ```
 
 Once you have activated your new Python virtual environment, you can install the library.
 
 ```bash
-$ make install
+make install
 ```
 
 Then, make sure you're able to run the test suite without issues.
 
 ```bash
-$ make test
+make test
 ```
 
 Before submitting a new PR, make sure your changes comply with our repo code style. This can be done conveniently by running the following command:
 
 ```bash
-$ make format
+make format
 ```
 
 This will run `black` and `isort`. If your IDE supports it, I would encourage you to automate running both `black` and `isort` every time you save and forget about the make command. Alternatively, you can set up a Git pre-commit hook.
