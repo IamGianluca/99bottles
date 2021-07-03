@@ -1,18 +1,4 @@
-class Bottle:
-    def song(self) -> str:
-        return self.verses(99, 0)
-
-    def verses(self, upper: int, lower: int) -> str:
-        return "\n".join(
-            [self.verse(i) for i in reversed(range(lower, upper + 1))]
-        )
-
-    def verse(self, number: int) -> str:
-        bn = BottleNumber.get(number)
-        return (
-            f"{bn.to_str().capitalize()} of beer on the wall, {bn.to_str()} of beer.\n"
-            f"{bn.action()}, {bn.successor().to_str()} of beer on the wall.\n"
-        )
+from typing import Protocol, Type
 
 
 class BottleNumber:
@@ -75,3 +61,48 @@ class BottleNumber6(BottleNumber):
 
     def container(self) -> str:
         return "six-pack"
+
+
+class VerseTemplate(Protocol):
+    def __init__(self, bottle_number) -> None:
+        pass
+
+    @staticmethod
+    def lyrics(number: int) -> str:
+        pass
+
+    def _lyrics(self) -> str:
+        pass
+
+
+class BottleVerse:
+    def __init__(self, bottle_number) -> None:
+        self.bottle_number = bottle_number
+
+    @staticmethod
+    def lyrics(number: int):
+        return BottleVerse(BottleNumber.get(number))._lyrics()
+
+    def _lyrics(self) -> str:
+        return (
+            f"{self.bottle_number.to_str().capitalize()} of beer on the wall, {self.bottle_number.to_str()} of beer.\n"
+            f"{self.bottle_number.action()}, {self.bottle_number.successor().to_str()} of beer on the wall.\n"
+        )
+
+
+class Bottle:
+    def __init__(
+        self, verse_template: Type[VerseTemplate] = BottleVerse
+    ) -> None:
+        self.verse_template = verse_template
+
+    def song(self) -> str:
+        return self.verses(99, 0)
+
+    def verses(self, upper: int, lower: int) -> str:
+        return "\n".join(
+            [self.verse(i) for i in reversed(range(lower, upper + 1))]
+        )
+
+    def verse(self, number: int) -> str:
+        return self.verse_template.lyrics(number)
