@@ -64,20 +64,14 @@ class BottleNumber6(BottleNumber):
 
 
 class VerseTemplate(Protocol):
-    def __init__(self, bottle_number) -> None:
-        pass
-
     @staticmethod
     def lyrics(number: int) -> str:
         pass
 
-    def _lyrics(self) -> str:
-        pass
-
 
 class BottleVerse:
-    def __init__(self, bottle_number) -> None:
-        self.bottle_number = bottle_number
+    def __init__(self, number) -> None:
+        self.number = number
 
     @staticmethod
     def lyrics(number: int):
@@ -85,19 +79,24 @@ class BottleVerse:
 
     def _lyrics(self) -> str:
         return (
-            f"{self.bottle_number.to_str().capitalize()} of beer on the wall, {self.bottle_number.to_str()} of beer.\n"
-            f"{self.bottle_number.action()}, {self.bottle_number.successor().to_str()} of beer on the wall.\n"
+            f"{self.number.to_str().capitalize()} of beer on the wall, {self.number.to_str()} of beer.\n"
+            f"{self.number.action()}, {self.number.successor().to_str()} of beer on the wall.\n"
         )
 
 
-class Bottle:
+class CountdownSong:
     def __init__(
-        self, verse_template: Type[VerseTemplate] = BottleVerse
+        self,
+        verse_template: Type[VerseTemplate],
+        max_: int = 999_999,
+        min_: int = 0,
     ) -> None:
         self.verse_template = verse_template
+        self.min_ = min_
+        self.max_ = max_
 
     def song(self) -> str:
-        return self.verses(99, 0)
+        return self.verses(self.max_, self.min_)
 
     def verses(self, upper: int, lower: int) -> str:
         return "\n".join(
